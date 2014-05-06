@@ -13,8 +13,19 @@ describe('ContainerController', function() {
   });
 
   describe("updatePreview()", function() {
+    var previewSpy;
+
+    beforeEach(function() {
+      $scope.preview = element.parent();
+      controller.setEditor($scope, element.parent());
+      previewSpy = spyOn($scope.preview, 'html')
+    });
+
     describe("without a preview", function() {
-      xit("should not throw an exception", function() {
+      it("doesn't give the preview html to the editor", function() {
+        $scope.preview = undefined;
+        $scope.updatePreview();
+        expect(previewSpy).not.toHaveBeenCalled();
       });
     });
 
