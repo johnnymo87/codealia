@@ -7,3 +7,6 @@ CodealiaApp.directive("cdlEditable", function() {
     }
   }
 });
+
+
+

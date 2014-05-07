@@ -30,12 +30,19 @@ describe('ContainerController', function () {
         });
 
         describe("without an editor", function () {
-            xit("should not throw an exception", function () {
+            it("does not give the editor a preview html", function () {
+                $scope.editor = undefined;
+                $scope.updateEditor();
+                expect(previewSpy).not.toHaveBeenCalled();
             });
         });
 
         describe("with a preview and editor defined", function () {
-            xit("should update the contents of the preview", function () {
+            it("should update the contents of the preview", function () {
+                $scope.editor = editor;
+                $scope.updateEditor();
+                expect(previewSpy).toHaveBeenCalled();
+
             });
         });
     });
