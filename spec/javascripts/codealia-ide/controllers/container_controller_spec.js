@@ -39,17 +39,28 @@ describe('ContainerController', function () {
 
         describe("with a preview and editor defined", function () {
             it("should update the contents of the preview", function () {
-                $scope.editor = editor;
                 $scope.updateEditor();
-                expect(previewSpy).toHaveBeenCalled();
+                expect(previewSpy).toHaveBeenCalledWith()
 
             });
         });
     });
 
     describe("updateEditor()", function () {
+        var editorSpy;
+
+        beforeEach(function() {
+            $scope.editor = element.parent();
+            controller.setEditor($scope, element.parent());
+            editorSpy = spyOn($scope.preview, 'html')
+        });
+
         describe("without a preview", function () {
-            xit("should not throw an exception", function () {
+            it("should not copy html from preview", function () {
+                $scope.preview = undefined;
+                $scope.updateEditor();
+                expect(editorSpy).not.toHaveBeenCalled();
+
             });
         });
 
