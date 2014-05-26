@@ -9,9 +9,7 @@ module.exports = function(config) {
       'karma-jasmine',
       'karma-phantomjs-launcher',
       'karma-coffee-preprocessor',
-      'sprockets-chain',
-      'execSync',
-      'fs'
+      'karma-chrome-launcher'
     ],
 
 
@@ -26,6 +24,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'vendor/assets/javascripts/angular-mocks.js',
       'spec/javascripts/**/*.js'
     ],
 

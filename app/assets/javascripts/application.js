@@ -21,7 +21,7 @@
 //= require angular.min
 //= require angular-route.min
 //= require_self
-//= require_tree
+//= require_tree .
 
 window.CodealiaApp = angular.module("Codealia", [ "ngRoute" ]);
 
