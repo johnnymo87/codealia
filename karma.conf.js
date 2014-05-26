@@ -9,6 +9,7 @@ module.exports = function(config) {
       'karma-jasmine',
       'karma-phantomjs-launcher',
       'karma-coffee-preprocessor',
+      'karma-sprockets',
       'sprockets-chain',
       'execSync',
       'fs'
@@ -27,6 +28,16 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'spec/javascripts/**/*.js'
+    ],
+
+    // https://github.com/SebastianZaha/karma-sprockets
+    sprocketsPath: [
+        'app/assets/javascripts'
+    ],
+
+
+    sprocketsBundles: [
+        'application.js'
     ],
 
 
@@ -76,33 +87,34 @@ module.exports = function(config) {
     singleRun: false
   });
 
-  var Chain = require("sprockets-chain"),
-      sh = require("execSync"),
-      fs = require("fs");
-  var chain = new Chain();
-  chain.appendPath("app/assets/javascripts");
-  chain.appendPath("vendor/assets/javascripts");
+//  var Chain = require("sprockets-chain"),
+//      sh = require("execSync"),
+//      fs = require("fs");
+//  var chain = new Chain();
+//  chain.appendPath("app/assets/javascripts");
+//  chain.appendPath("vendor/assets/javascripts");
+//
+//  var output = sh.exec("bundle show --paths");
+//  if (output.code === 0) {
+//    var dirs = output.stdout.split('\n');
+//    dirs.pop();
+//
+//    var preprocessor = config.preprocessor
+//    for (var i = 0; i < dirs.length; i++) {
+//      chain.appendPath(dirs[i]);
+//      config.preprocessors[dirs[i] + "/**/*.coffee"] = "coffee";
+//
+//      dir = dirs[i] + "/lib/assets/javascripts";
+//      if (fs.existsSync(dir)) {
+//        chain.appendPath(dir);
+//      }
+//
+//      dir = dirs[i] + "/vendor/assets/javascripts";
+//      if (fs.existsSync(dir)) {
+//        chain.appendPath(dir);
+//      }
+//    }
+//  }
+//  config.files.unshift.apply(config.files, chain.depChain("application.js"));
 
-  var output = sh.exec("bundle show --paths");
-  if (output.code === 0) {
-    var dirs = output.stdout.split('\n');
-    dirs.pop();
-
-    var preprocessor = config.preprocessor
-    for (var i = 0; i < dirs.length; i++) {
-      chain.appendPath(dirs[i]);
-      config.preprocessors[dirs[i] + "/**/*.coffee"] = "coffee";
-
-      dir = dirs[i] + "/lib/assets/javascripts";
-      if (fs.existsSync(dir)) {
-        chain.appendPath(dir);
-      }
-
-      dir = dirs[i] + "/vendor/assets/javascripts";
-      if (fs.existsSync(dir)) {
-        chain.appendPath(dir);
-      }
-    }
-  }
-  config.files.unshift.apply(config.files, chain.depChain("application.js"));
 };
