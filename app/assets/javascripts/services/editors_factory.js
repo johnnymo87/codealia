@@ -1,6 +1,6 @@
 CodealiaApp.factory("EditorsFactory", function() {
-  var self = {};
-  self.previews = [];
+  var self = this;
+  self.editors = [];
 
   self.updatePreview = function() {
     if (self.preview && self.editor) {
@@ -34,7 +34,6 @@ CodealiaApp.factory("EditorsFactory", function() {
 
   self.makeEditable = function(scope, element, attrs) {
     self.preview = element;
-    self.previews.push(self.preview);
     self.updateEditor();
   }
 

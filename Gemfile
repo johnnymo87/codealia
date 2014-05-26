@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
-
 ruby '2.1.1'
 gem 'rails', '4.1.0'
 
@@ -31,7 +29,6 @@ group :development, :test do
   gem 'poltergeist'
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
-  gem 'rails-assets-angular-mocks'
 end
 
 group :production do
