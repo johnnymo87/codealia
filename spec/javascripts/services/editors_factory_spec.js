@@ -7,8 +7,25 @@ describe("EditorsFactory", function() {
   }));
 
   beforeEach(function() {
-    setFixtures('<div><div id="passions-editor"></div></div>')
-    element = $('div > div#passions-editor')
+    element = angular.element('<div><div id="passions-editor"></div></div>').find('#passions-editor')
+  });
+
+  describe('directives', function() {
+    beforeEach(inject(function($rootScope, $compile, _$httpBackend_) {
+      $scope = $rootScope.$new();
+      compile = $compile;
+      $httpBackend = _$httpBackend_;
+      var elm = angular.element('<div cdl-preview>HELLO</div>')
+      compile(elm)($scope);
+//      var elm = angular.element('<div cdl-passions-editor></div>')
+//      compile(elm)($scope);
+
+    }));
+
+    it('should load preview html into the editor', function() {
+      expect(factory.preview.html()).toEqual('HELLO');
+//      expect(factory.preview.html()).toEqual(factory.editor.getValue());
+    });
   });
 
   describe('makeEditable()', function() {
@@ -81,8 +98,8 @@ describe("EditorsFactory", function() {
 
     describe("with a preview and editor defined", function() {
       beforeEach(function() {
-        appendSetFixtures('<div><div id="editable"></div></div>')
-        var el = $("div > #editable");
+        var poppa = angular.element('<div><div id="editable"></div></div>')
+        var el = poppa.find('#editable');
         factory.setEditor({}, element.parent());
         factory.makeEditable({}, el.parent());
         el.html("");
@@ -120,8 +137,8 @@ describe("EditorsFactory", function() {
 
     describe("with a preview and editor defined", function() {
       beforeEach(function() {
-        appendSetFixtures('<div><div id="editable"></div></div>')
-        var el = $("div > #editable");
+        var poppa = angular.element('<div><div id="editable"></div></div>')
+        var el = poppa.find('#editable');
         factory.setEditor({}, element.parent());
         factory.makeEditable({}, el);
         el.html("hello there");

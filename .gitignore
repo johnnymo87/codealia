@@ -43,3 +43,4 @@ public/assets/**
 
 # rvm
 .rvmrc
+node_modules
